@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Do | Vancouver Real Estate | RE/MAX Crest Realty</title>
+    <meta name="description" content="Thai Do - Personal Real Estate Corporation. Vancouver luxury real estate specialist at RE/MAX Crest Realty. Buy, sell, and invest with confidence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a3a;
+            --accent: #c9a96e;
+            --accent-light: #e4d5b7;
+            --dark: #0d1117;
+            --light: #f8f7f4;
+            --gray: #6b7280;
+            --glass: rgba(255,255,255,0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(13,17,23,0.95);
+            backdrop-filter: blur(20px);
+            padding: 12px 0;
+            box-shadow: 0 1px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0d1117 0%, #1a2a3a 40%, #0d1117 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(5deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 24px;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.5s;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.7s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards 0.9s;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #b8944f);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201,169,110,0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            z-index: 2;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { top: 6px; opacity: 1; }
+            50% { top: 20px; opacity: 0.3; }
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 48px 24px;
+        }
+
+        .stats-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--primary), #2a3a4a);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-initials {
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(13,17,23,0.5));
+        }
+
+        .about-detail {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .about-detail-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: rgba(201,169,110,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .about-detail h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-detail p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201,169,110,0.2);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* AREAS */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .area-card {
+            background: linear-gradient(135deg, rgba(26,42,58,0.8), rgba(13,17,23,0.9));
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .area-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .area-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .area-card p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* CONTACT */
+        .contact-section {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .contact-info-item .icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: rgba(201,169,110,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--accent);
+        }
+
+        .contact-info-item h4 {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .contact-info-item p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .contact-info-item a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info-item a:hover { color: var(--accent); }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand span { color: var(--accent); }
+
+        .footer-brokerage {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13,17,23,0.98);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+
+            .nav-links.active { display: flex; }
+
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .services-grid,
+            .areas-grid { grid-template-columns: 1fr; }
+
+            .about-image { max-height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">Thai <span>Do</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#areas">Areas</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-tag">Vancouver Real Estate Specialist</p>
+            <h1>
+                Your Home,
+                <span>Your Future.</span>
+            </h1>
+            <p class="hero-sub">Personalized real estate guidance in Greater Vancouver. From first homes to luxury investments, I'm here to help you make your best move.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#services" class="btn btn-outline">Explore Services</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <h3>10+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>200+</h3>
+                <p>Properties Sold</p>
+            </div>
+            <div class="stat-item">
+                <h3>$150M+</h3>
+                <p>Total Sales Volume</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-image">
+                    <span class="about-image-initials">TD</span>
+                </div>
+                <div>
+                    <p class="section-tag">About Me</p>
+                    <h2 class="section-title">Thai Do</h2>
+                    <p class="section-desc">Personal Real Estate Corporation at RE/MAX Crest Realty. I bring deep market knowledge, strategic negotiation, and a client-first approach to every transaction across Greater Vancouver.</p>
+
+                    <div class="about-detail">
+                        <div class="about-detail-icon">&#9733;</div>
+                        <div>
+                            <h4>RE/MAX Crest Realty</h4>
+                            <p>West Side Office &mdash; BC Condos & Homes Team</p>
+                        </div>
+                    </div>
+                    <div class="about-detail">
+                        <div class="about-detail-icon">&#9670;</div>
+                        <div>
+                            <h4>Market Expertise</h4>
+                            <p>Specializing in Vancouver Westside, Downtown, and the Greater Vancouver area</p>
+                        </div>
+                    </div>
+                    <div class="about-detail">
+                        <div class="about-detail-icon">&#10003;</div>
+                        <div>
+                            <h4>Full-Service Approach</h4>
+                            <p>From market analysis to closing, guiding you through every step of the journey</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="section-inner">
+            <p class="section-tag">What I Do</p>
+            <h2 class="section-title">Services</h2>
+            <p class="section-desc">Comprehensive real estate services tailored to your goals, timeline, and lifestyle.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">&#127968;</div>
+                    <h3>Buying</h3>
+                    <p>Find your ideal property with personalized search, expert negotiation, and market insights that give you a competitive edge.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#128200;</div>
+                    <h3>Selling</h3>
+                    <p>Maximize your property's value with strategic pricing, professional marketing, and targeted exposure to qualified buyers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#127961;</div>
+                    <h3>Investment</h3>
+                    <p>Build wealth through smart real estate investments. I help you identify opportunities, from condos to multi-unit properties.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#128196;</div>
+                    <h3>Market Analysis</h3>
+                    <p>In-depth comparative market analysis and neighborhood reports to make informed decisions backed by real data.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#127969;</div>
+                    <h3>Pre-Sale Condos</h3>
+                    <p>Access to Vancouver's newest developments with early pricing. Get expert guidance on the best pre-sale opportunities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#129309;</div>
+                    <h3>Relocation</h3>
+                    <p>Moving to Vancouver? I'll help you find the right neighborhood, navigate the market, and settle into your new home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AREAS -->
+    <section id="areas">
+        <div class="section-inner">
+            <p class="section-tag">Coverage</p>
+            <h2 class="section-title">Areas I Serve</h2>
+            <p class="section-desc">Deep knowledge across Greater Vancouver's most sought-after neighborhoods.</p>
+
+            <div class="areas-grid">
+                <div class="area-card">
+                    <h3>Vancouver Westside</h3>
+                    <p>Kitsilano, Point Grey, Kerrisdale, Dunbar, Arbutus Ridge</p>
+                </div>
+                <div class="area-card">
+                    <h3>Downtown Vancouver</h3>
+                    <p>Coal Harbour, Yaletown, West End, Gastown</p>
+                </div>
+                <div class="area-card">
+                    <h3>East Vancouver</h3>
+                    <p>Mount Pleasant, Main Street, Commercial Drive, Hastings</p>
+                </div>
+                <div class="area-card">
+                    <h3>Burnaby</h3>
+                    <p>Metrotown, Brentwood, Edmonds, Lougheed</p>
+                </div>
+                <div class="area-card">
+                    <h3>Coquitlam</h3>
+                    <p>Burke Mountain, Westwood Plateau, Town Centre</p>
+                </div>
+                <div class="area-card">
+                    <h3>Fraser Valley</h3>
+                    <p>Surrey, Langley, Mission, Abbotsford</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="section-inner">
+            <p class="section-tag">Let's Connect</p>
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-desc">Ready to buy, sell, or invest? Reach out and let's start the conversation.</p>
+
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-item">
+                        <div class="icon">&#9742;</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:6048282901">(604) 828-2901</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon">&#9993;</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:thai@thaido.ca">thai@thaido.ca</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="icon">&#9873;</div>
+                        <div>
+                            <h4>Office</h4>
+                            <p>RE/MAX Crest Realty<br>1195 W Broadway, 3rd Floor<br>Vancouver, BC V6H 1G3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="tel" placeholder="Phone Number">
+                    <textarea placeholder="Tell me about your real estate goals..."></textarea>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-brand">Thai <span>Do</span></p>
+            <p class="footer-brokerage">Personal Real Estate Corporation | RE/MAX Crest Realty (West Side)</p>
+            <p class="footer-bottom">&copy; 2026 Thai Do. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .area-card, .stat-item, .about-detail, .contact-info-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Form handler
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for reaching out! I will get back to you shortly.');
+            e.target.reset();
+        });
+    </script>
+
+</body>
+</html>
