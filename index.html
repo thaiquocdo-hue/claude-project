@@ -423,6 +423,170 @@
         }
         .btn-submit:hover { background: var(--navy-light); }
 
+        /* GAME */
+        .game-section { background: var(--navy); padding: 80px 24px; }
+        .game-wrapper {
+            max-width: 900px; margin: 0 auto;
+            background: #0a1425; border-radius: 16px;
+            border: 1px solid rgba(201,169,110,0.2);
+            overflow: hidden;
+        }
+        .game-header-bar {
+            background: linear-gradient(135deg, var(--navy-light), var(--navy));
+            padding: 24px 32px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(201,169,110,0.15);
+        }
+        .game-header-bar h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; color: white;
+        }
+        .game-header-bar h3 span { color: var(--gold); }
+        .game-balance {
+            font-size: 24px; font-weight: 700; color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        .game-stats-bar {
+            display: flex; gap: 24px; padding: 16px 32px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px; color: rgba(255,255,255,0.5);
+        }
+        .game-stats-bar span strong { color: var(--gold); }
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            padding: 24px;
+        }
+        .game-tile {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 12px 10px;
+            text-align: center;
+            min-height: 100px;
+            display: flex; flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+            position: relative;
+            cursor: default;
+        }
+        .game-tile.current {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(201,169,110,0.2);
+            background: rgba(201,169,110,0.08);
+        }
+        .game-tile.owned {
+            border-color: #4ade80;
+            background: rgba(74,222,128,0.06);
+        }
+        .game-tile .tile-type {
+            font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.35); margin-bottom: 4px;
+        }
+        .game-tile .tile-icon { font-size: 24px; margin: 4px 0; }
+        .game-tile .tile-name {
+            font-size: 11px; font-weight: 600; color: white;
+            line-height: 1.2;
+        }
+        .game-tile .tile-price {
+            font-size: 10px; color: var(--gold); margin-top: 4px;
+        }
+        .game-tile .tile-owned-badge {
+            position: absolute; top: 6px; right: 6px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #4ade80;
+        }
+        .game-tile .tile-player {
+            position: absolute; bottom: 6px; right: 6px;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--gold); color: var(--navy);
+            font-size: 10px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            animation: playerPulse 1.5s infinite;
+        }
+        @keyframes playerPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(201,169,110,0); }
+        }
+        .game-controls {
+            padding: 20px 32px;
+            display: flex; gap: 12px; align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .game-dice-btn {
+            background: var(--gold); color: var(--navy);
+            border: none; border-radius: 8px;
+            padding: 12px 28px; font-size: 14px; font-weight: 700;
+            cursor: pointer; transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .game-dice-btn:hover { background: var(--gold-light); transform: scale(1.02); }
+        .game-dice-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        .game-dice-result {
+            display: flex; gap: 8px; align-items: center;
+        }
+        .dice-face {
+            width: 40px; height: 40px;
+            background: white; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 800; color: var(--navy);
+        }
+        .dice-face.rolling { animation: diceRoll 0.4s ease; }
+        @keyframes diceRoll {
+            0% { transform: rotateZ(0deg) scale(1); }
+            25% { transform: rotateZ(90deg) scale(0.8); }
+            50% { transform: rotateZ(180deg) scale(1.1); }
+            75% { transform: rotateZ(270deg) scale(0.9); }
+            100% { transform: rotateZ(360deg) scale(1); }
+        }
+        .game-log {
+            padding: 16px 32px 24px;
+            max-height: 120px; overflow-y: auto;
+        }
+        .game-log p {
+            font-size: 13px; color: rgba(255,255,255,0.5);
+            padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+            line-height: 1.5;
+        }
+        .game-log p:last-child { color: rgba(255,255,255,0.8); }
+        .game-log .log-gold { color: var(--gold); }
+        .game-log .log-green { color: #4ade80; }
+        .game-log .log-red { color: #f87171; }
+        .game-action-btns {
+            display: flex; gap: 8px; padding: 0 32px 16px;
+        }
+        .game-action-btn {
+            padding: 10px 20px; border-radius: 6px;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+            border: none; font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+        .game-action-btn.buy { background: #4ade80; color: #0a1425; }
+        .game-action-btn.buy:hover { background: #6ee7a0; }
+        .game-action-btn.skip { background: rgba(255,255,255,0.1); color: white; }
+        .game-action-btn.skip:hover { background: rgba(255,255,255,0.15); }
+        .game-action-btns.hidden { display: none; }
+        .game-over-msg {
+            text-align: center; padding: 20px 32px;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px; color: var(--gold);
+            display: none;
+        }
+        .game-restart-btn {
+            background: var(--gold); color: var(--navy);
+            border: none; border-radius: 6px;
+            padding: 10px 24px; font-weight: 700; font-size: 13px;
+            cursor: pointer; margin-left: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        @media (max-width: 700px) {
+            .game-board { grid-template-columns: repeat(3, 1fr); }
+            .game-header-bar { flex-direction: column; gap: 8px; text-align: center; }
+            .game-stats-bar { flex-wrap: wrap; }
+        }
+
         /* FOOTER */
         footer {
             background: var(--navy); color: white;
@@ -499,6 +663,7 @@
             <li><a href="#listings">Listings</a></li>
             <li><a href="#neighborhoods">Neighborhoods</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#game">Play Game</a></li>
             <li><a href="#contact" class="btn-nav">Contact Me</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -809,6 +974,45 @@
     </div>
 </section>
 
+<!-- GAME -->
+<section class="game-section" id="game">
+    <div class="section-inner" style="max-width:900px;">
+        <div class="section-header fade-in" style="text-align:center; margin-left:auto; margin-right:auto;">
+            <p class="tag" style="color:var(--gold); text-align:center;">Just For Fun</p>
+            <h2 style="color:white; text-align:center;">Vancouver Property Tycoon</h2>
+            <p style="color:rgba(255,255,255,0.5); text-align:center; margin:0 auto 32px;">Roll the dice, buy Vancouver properties, collect rent, and build your real estate empire!</p>
+        </div>
+        <div class="game-wrapper" id="gameWrapper">
+            <div class="game-header-bar">
+                <h3>Property <span>Tycoon</span></h3>
+                <div class="game-balance" id="gameBalance">$500,000</div>
+            </div>
+            <div class="game-stats-bar">
+                <span>Round: <strong id="gameRound">1</strong>/20</span>
+                <span>Properties: <strong id="gameProps">0</strong></span>
+                <span>Portfolio: <strong id="gamePortfolio">$0</strong></span>
+                <span>Rent Earned: <strong id="gameRent">$0</strong></span>
+            </div>
+            <div class="game-board" id="gameBoard"></div>
+            <div class="game-controls">
+                <button class="game-dice-btn" id="rollBtn" onclick="rollDice()">Roll Dice</button>
+                <div class="game-dice-result">
+                    <div class="dice-face" id="dice1">?</div>
+                    <div class="dice-face" id="dice2">?</div>
+                </div>
+            </div>
+            <div class="game-action-btns hidden" id="actionBtns">
+                <button class="game-action-btn buy" id="buyBtn" onclick="buyProperty()">Buy Property</button>
+                <button class="game-action-btn skip" onclick="skipProperty()">Skip</button>
+            </div>
+            <div class="game-log" id="gameLog">
+                <p>Welcome to Vancouver Property Tycoon! You start with <span class="log-gold">$500,000</span>. Roll the dice to begin!</p>
+            </div>
+            <div class="game-over-msg" id="gameOver"></div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="footer-inner">
@@ -865,6 +1069,238 @@
         alert('Thank you! I will be in touch shortly.');
         e.target.reset();
     });
+
+    // ====== VANCOUVER PROPERTY TYCOON ======
+    const TILES = [
+        { id:0, name:"Start", type:"start", icon:"&#127937;", price:0, rent:0, color:"" },
+        { id:1, name:"Yaletown Condo", type:"property", icon:"&#127961;", price:120000, rent:12000, color:"#3b82f6" },
+        { id:2, name:"Community Chest", type:"chest", icon:"&#127873;", price:0, rent:0, color:"" },
+        { id:3, name:"East Van Studio", type:"property", icon:"&#127960;", price:80000, rent:8000, color:"#8b5cf6" },
+        { id:4, name:"Property Tax", type:"tax", icon:"&#128176;", price:0, rent:0, color:"" },
+        { id:5, name:"Kits Townhouse", type:"property", icon:"&#127968;", price:250000, rent:25000, color:"#10b981" },
+        { id:6, name:"Chance Card", type:"chance", icon:"&#127183;", price:0, rent:0, color:"" },
+        { id:7, name:"Metrotown Tower", type:"property", icon:"&#127962;", price:180000, rent:18000, color:"#f59e0b" },
+        { id:8, name:"Open House", type:"bonus", icon:"&#128101;", price:0, rent:0, color:"" },
+        { id:9, name:"Coal Harbour Penthouse", type:"property", icon:"&#127751;", price:450000, rent:45000, color:"#ef4444" },
+        { id:10, name:"Free Parking", type:"free", icon:"&#128663;", price:0, rent:0, color:"" },
+        { id:11, name:"Kerrisdale Home", type:"property", icon:"&#127969;", price:380000, rent:38000, color:"#ec4899" },
+        { id:12, name:"Community Chest", type:"chest", icon:"&#127873;", price:0, rent:0, color:"" },
+        { id:13, name:"Gastown Loft", type:"property", icon:"&#127751;", price:200000, rent:20000, color:"#6366f1" },
+        { id:14, name:"Renovation Cost", type:"tax", icon:"&#128296;", price:0, rent:0, color:"" },
+        { id:15, name:"Point Grey Estate", type:"property", icon:"&#127965;", price:500000, rent:50000, color:"#0ea5e9" },
+        { id:16, name:"Chance Card", type:"chance", icon:"&#127183;", price:0, rent:0, color:"" },
+        { id:17, name:"Burnaby Duplex", type:"property", icon:"&#127963;", price:300000, rent:30000, color:"#14b8a6" },
+    ];
+
+    const CHANCE = [
+        { msg:"Market boom! All your properties gain value.", effect:"boom" },
+        { msg:"You found a hidden suite! Collect $30,000.", effect:"gain", amount:30000 },
+        { msg:"Pipe burst in one of your units! Pay $20,000.", effect:"lose", amount:20000 },
+        { msg:"Hot market! Collect double rent this turn.", effect:"doublerent" },
+        { msg:"Rezoning approved! Collect $50,000 bonus.", effect:"gain", amount:50000 },
+        { msg:"Interest rate hike! Pay $25,000.", effect:"lose", amount:25000 },
+    ];
+
+    const CHEST = [
+        { msg:"Client referral bonus! Collect $20,000.", effect:"gain", amount:20000 },
+        { msg:"Strata assessment! Pay $15,000.", effect:"lose", amount:15000 },
+        { msg:"Your listing went viral! Collect $40,000.", effect:"gain", amount:40000 },
+        { msg:"Emergency repair needed! Pay $10,000.", effect:"lose", amount:10000 },
+        { msg:"Tenant signed a long lease! Collect $25,000.", effect:"gain", amount:25000 },
+    ];
+
+    let game = { pos:0, balance:500000, round:1, maxRounds:20, owned:[], rentTotal:0, rolling:false, waiting:false };
+
+    function initBoard() {
+        const board = document.getElementById('gameBoard');
+        board.innerHTML = '';
+        TILES.forEach((t, i) => {
+            const div = document.createElement('div');
+            div.className = 'game-tile' + (i===0?' current':'') + (game.owned.includes(i)?' owned':'');
+            div.id = 'tile-'+i;
+            let typeLabel = t.type==='property'?'Property':t.type==='tax'?'Pay':t.type==='chance'?'Chance':t.type==='chest'?'Chest':t.type==='bonus'?'Bonus':t.type==='free'?'Rest':t.type==='start'?'Start':'';
+            div.innerHTML =
+                '<div class="tile-type">'+typeLabel+'</div>'+
+                '<div class="tile-icon">'+t.icon+'</div>'+
+                '<div class="tile-name">'+t.name+'</div>'+
+                (t.price?'<div class="tile-price">$'+t.price.toLocaleString()+'</div>':'')+
+                (game.owned.includes(i)?'<div class="tile-owned-badge"></div>':'')+
+                (game.pos===i?'<div class="tile-player">You</div>':'');
+            board.appendChild(div);
+        });
+    }
+
+    function updateUI() {
+        document.getElementById('gameBalance').textContent = '$'+game.balance.toLocaleString();
+        document.getElementById('gameRound').textContent = game.round;
+        document.getElementById('gameProps').textContent = game.owned.length;
+        document.getElementById('gamePortfolio').textContent = '$'+game.owned.reduce((s,i)=>s+TILES[i].price,0).toLocaleString();
+        document.getElementById('gameRent').textContent = '$'+game.rentTotal.toLocaleString();
+        initBoard();
+    }
+
+    function log(msg) {
+        const el = document.getElementById('gameLog');
+        const p = document.createElement('p');
+        p.innerHTML = msg;
+        el.appendChild(p);
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function rollDice() {
+        if (game.rolling || game.waiting || game.round > game.maxRounds) return;
+        game.rolling = true;
+        document.getElementById('rollBtn').disabled = true;
+
+        const d1 = Math.floor(Math.random()*6)+1;
+        const d2 = Math.floor(Math.random()*6)+1;
+        const total = d1+d2;
+
+        document.getElementById('dice1').textContent = '?';
+        document.getElementById('dice2').textContent = '?';
+        document.getElementById('dice1').classList.add('rolling');
+        document.getElementById('dice2').classList.add('rolling');
+
+        setTimeout(() => {
+            document.getElementById('dice1').classList.remove('rolling');
+            document.getElementById('dice2').classList.remove('rolling');
+            document.getElementById('dice1').textContent = d1;
+            document.getElementById('dice2').textContent = d2;
+
+            // Collect rent from owned properties
+            let rentThisTurn = game.owned.reduce((s,i)=>s+TILES[i].rent, 0);
+            if (rentThisTurn > 0) {
+                game.balance += rentThisTurn;
+                game.rentTotal += rentThisTurn;
+                log('Rent collected: <span class="log-green">+$'+rentThisTurn.toLocaleString()+'</span>');
+            }
+
+            // Move
+            game.pos = (game.pos + total) % TILES.length;
+            if (game.pos + total >= TILES.length && game.round <= game.maxRounds) {
+                game.balance += 20000;
+                log('Passed Start! <span class="log-green">+$20,000</span>');
+            }
+
+            const tile = TILES[game.pos];
+            log('Round '+game.round+': Rolled <span class="log-gold">'+d1+' + '+d2+' = '+total+'</span>. Landed on <strong>'+tile.name+'</strong>');
+
+            handleTile(tile);
+            game.round++;
+            game.rolling = false;
+
+            if (game.round > game.maxRounds) {
+                endGame();
+            } else if (!game.waiting) {
+                document.getElementById('rollBtn').disabled = false;
+            }
+            updateUI();
+        }, 600);
+    }
+
+    function handleTile(tile) {
+        if (tile.type === 'property') {
+            if (game.owned.includes(tile.id)) {
+                log('You already own this property. <span class="log-gold">Safe at home!</span>');
+                document.getElementById('rollBtn').disabled = false;
+            } else if (game.balance >= tile.price) {
+                game.waiting = true;
+                document.getElementById('actionBtns').classList.remove('hidden');
+                document.getElementById('buyBtn').textContent = 'Buy for $'+tile.price.toLocaleString();
+            } else {
+                log('Can\'t afford <span class="log-red">$'+tile.price.toLocaleString()+'</span>. Skipping.');
+                document.getElementById('rollBtn').disabled = false;
+            }
+        } else if (tile.type === 'tax') {
+            const tax = tile.id===4 ? 30000 : 25000;
+            game.balance -= tax;
+            log('Paid <span class="log-red">-$'+tax.toLocaleString()+'</span> in '+tile.name.toLowerCase()+'.');
+            document.getElementById('rollBtn').disabled = false;
+            if (game.balance < 0) endGame();
+        } else if (tile.type === 'chance') {
+            const c = CHANCE[Math.floor(Math.random()*CHANCE.length)];
+            applyCard(c);
+            document.getElementById('rollBtn').disabled = false;
+        } else if (tile.type === 'chest') {
+            const c = CHEST[Math.floor(Math.random()*CHEST.length)];
+            applyCard(c);
+            document.getElementById('rollBtn').disabled = false;
+        } else if (tile.type === 'bonus') {
+            game.balance += 25000;
+            log('Open house success! <span class="log-green">+$25,000</span>');
+            document.getElementById('rollBtn').disabled = false;
+        } else {
+            document.getElementById('rollBtn').disabled = false;
+        }
+    }
+
+    function applyCard(card) {
+        if (card.effect === 'gain') {
+            game.balance += card.amount;
+            log(card.msg + ' <span class="log-green">+$'+card.amount.toLocaleString()+'</span>');
+        } else if (card.effect === 'lose') {
+            game.balance -= card.amount;
+            log(card.msg + ' <span class="log-red">-$'+card.amount.toLocaleString()+'</span>');
+            if (game.balance < 0) endGame();
+        } else if (card.effect === 'boom') {
+            const bonus = game.owned.length * 15000;
+            game.balance += bonus;
+            log(card.msg + ' <span class="log-green">+$'+bonus.toLocaleString()+'</span>');
+        } else if (card.effect === 'doublerent') {
+            const bonus = game.owned.reduce((s,i)=>s+TILES[i].rent, 0);
+            game.balance += bonus;
+            game.rentTotal += bonus;
+            log(card.msg + ' <span class="log-green">+$'+bonus.toLocaleString()+'</span>');
+        }
+    }
+
+    function buyProperty() {
+        const tile = TILES[game.pos];
+        game.balance -= tile.price;
+        game.owned.push(tile.id);
+        log('Purchased <strong>'+tile.name+'</strong> for <span class="log-gold">$'+tile.price.toLocaleString()+'</span>. Rent: $'+tile.rent.toLocaleString()+'/turn');
+        game.waiting = false;
+        document.getElementById('actionBtns').classList.add('hidden');
+        document.getElementById('rollBtn').disabled = false;
+        updateUI();
+    }
+
+    function skipProperty() {
+        log('Skipped buying '+TILES[game.pos].name+'.');
+        game.waiting = false;
+        document.getElementById('actionBtns').classList.add('hidden');
+        document.getElementById('rollBtn').disabled = false;
+    }
+
+    function endGame() {
+        const portfolio = game.owned.reduce((s,i)=>s+TILES[i].price,0);
+        const total = game.balance + portfolio;
+        let grade = '';
+        if (total >= 1200000) grade = 'Real Estate Mogul! &#127942;';
+        else if (total >= 900000) grade = 'Top Producer! &#11088;';
+        else if (total >= 600000) grade = 'Rising Agent! &#128200;';
+        else grade = 'Keep Hustling! &#128170;';
+
+        document.getElementById('rollBtn').disabled = true;
+        document.getElementById('actionBtns').classList.add('hidden');
+        const el = document.getElementById('gameOver');
+        el.style.display = 'block';
+        el.innerHTML = 'Game Over! Net Worth: <span style="color:var(--gold)">$'+total.toLocaleString()+'</span> &mdash; '+grade+
+            '<br><button class="game-restart-btn" onclick="restartGame()">Play Again</button>';
+        log('Final net worth: <span class="log-gold">$'+total.toLocaleString()+'</span> (Cash: $'+game.balance.toLocaleString()+' + Properties: $'+portfolio.toLocaleString()+')');
+    }
+
+    function restartGame() {
+        game = { pos:0, balance:500000, round:1, maxRounds:20, owned:[], rentTotal:0, rolling:false, waiting:false };
+        document.getElementById('gameOver').style.display = 'none';
+        document.getElementById('gameLog').innerHTML = '<p>New game! You start with <span class="log-gold">$500,000</span>. Roll the dice!</p>';
+        document.getElementById('dice1').textContent = '?';
+        document.getElementById('dice2').textContent = '?';
+        document.getElementById('rollBtn').disabled = false;
+        updateUI();
+    }
+
+    initBoard();
 </script>
 
 </body>
